@@ -1,0 +1,37 @@
+﻿@model IEnumerable<MovieApp.Models.MovieModel>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="hero-unit">
+    @Html.Partial("_Movies", Model)
+
+    @Ajax.ActionLink("Create New Movie", "Create", null, 
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "create-movie",
+            LoadingElementId = "loading",
+            OnSuccess = "hideButton",
+            OnFailure = "alertMessage"
+        }, new { id = "ajax-create-button" })
+
+
+    <div id="create-movie" class="hero-unit">
+    </div>
+
+    <div id="loading" style="display: none">
+        <strong>Loading...</strong>
+    </div>
+</div>
+
+<script>
+    function hideButton() {
+        $("#ajax-create-button").hide();
+    }
+
+    function alertMessage() {
+        alert("error!")
+    }
+</script>

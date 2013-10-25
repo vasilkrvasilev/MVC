@@ -1,0 +1,10 @@
+﻿<style>
+    aside {
+        padding: 50px
+    }
+</style>
+<aside class="lead text-center text-info">
+    <div>Number of questions - <strong>@Html.Action("Count", "Home")</strong></div>
+    <div>Number of answers - <strong>@Html.Action("Count", "Answers")</strong></div>
+    <div>Number of votes - <strong>@Html.Action("Count", "Votes")</strong></div>
+</aside>

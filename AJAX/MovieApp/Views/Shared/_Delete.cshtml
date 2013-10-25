@@ -1,0 +1,36 @@
+﻿@model MovieApp.Models.MovieModel
+
+@using (Html.BeginForm("DeleteOk", "Home", new { id = Model.Id }))
+{
+    <h2>Delete Movie</h2>
+    <h3>@Model.MovieTitle</h3>
+    <strong>Year - @Model.Year, Studio - @Model.Studio</strong>
+    <br />
+    <input type="submit" value="Delete" />
+}
+
+@Ajax.ActionLink("Back", "Cancel", "Home",
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "delete-movie",
+            LoadingElementId = "loading",
+            OnSuccess = "showButton",
+            OnFailure = "alertMessage"
+        }, new { id = "ajax-cancel-button" })
+
+<script>
+    function showButton() {
+        $("#ajax-edit-delete-buttons").show();
+    }
+
+    function alertMessage() {
+        alert("error!")
+    }
+</script>
+
+
+
+
+

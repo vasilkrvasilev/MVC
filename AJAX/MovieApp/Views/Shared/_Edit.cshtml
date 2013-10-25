@@ -1,0 +1,52 @@
+﻿@model MovieApp.Models.MovieFullModel
+
+@using (Html.BeginForm("EditOk", "Home", new { id = Model.Id }))
+{
+    <h2>Edit Movie</h2>
+    @Html.Label("TitleLabel", "Movie Title")
+    @Html.TextBox("MovieTitle", Model.MovieTitle)
+    @Html.Label("DirectorLabel", "Director Name")
+    @Html.TextBox("Director", Model.Director)
+    @Html.Label("YearLabel", "Movie Year")
+    <input type="number" id="year" min="1900" max="@(DateTime.Now.Year + 3)" value="@Model.Year" name="Year" />
+    @Html.Label("MaleRoleNameLabel", "Leading Male-Role Name")
+    @Html.TextBox("MaleRoleName", Model.MaleRoleName)
+    @Html.Label("MaleRoleAgeLabel", "Leading Male-Role Age")
+    <input type="number" id="male-age" min="0" max="@(DateTime.Now.Year + 3)" value="@Model.MaleRoleAge" name="MaleRoleAge" />
+    @Html.Label("FemaleRoleNameLabel", "Leading Female-Role Name")
+    @Html.TextBox("FemaleRoleName", Model.FemaleRoleName)
+    @Html.Label("FemaleRoleAgeLabel", "Leading Female-Role Age")
+    <input type="number" id="male-age" min="0" max="@(DateTime.Now.Year + 3)" value="@Model.FemaleRoleAge" name="FemaleRoleAge" />
+    @Html.Label("StudioLabel", "Studio Name")
+    @Html.TextBox("Studio", Model.Studio)
+    @Html.Label("StudioAddressLabel", "Studio Address")
+    @Html.TextBox("StudioAddress", Model.StudioAddress)
+    <br />
+    <input type="submit" value="Save" />
+}
+
+@Ajax.ActionLink("Back", "Cancel", "Home",
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "edit-movie",
+            LoadingElementId = "loading",
+            OnSuccess = "showButton",
+            OnFailure = "alertMessage"
+        }, new { id = "ajax-cancel-button" })
+
+<script>
+    function showButton() {
+        $("#ajax-edit-delete-buttons").show();
+    }
+
+    function alertMessage() {
+        alert("error!")
+    }
+</script>
+
+
+
+
+

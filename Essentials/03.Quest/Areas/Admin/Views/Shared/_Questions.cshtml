@@ -1,0 +1,18 @@
+﻿@model IEnumerable<_03.Quest.Models.QuestionModel>
+
+@if (Model.Count() > 0)
+{  
+    foreach (var item in Model)
+    {
+        <div>
+            @Html.ActionLink("Create New Answer", "Create", "AdminQuestions", new { id = item.Id }, null)
+            <strong>@item.Text</strong>
+        </div>
+    }
+}
+else
+{
+    <div>
+        <strong>No Questions found</strong>
+    </div>
+}

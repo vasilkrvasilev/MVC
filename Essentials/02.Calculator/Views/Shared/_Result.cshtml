@@ -1,0 +1,21 @@
+﻿@model IEnumerable<_02.Calculator.Models.Measure>
+@if (Model != null)
+{
+    <table>
+        @foreach (var item in Model)
+        {
+        <tr>
+            @if ((int)item.Thousand == 0)
+            {
+                <td style="width: 150px">@item.BitBite.ToString()</td>
+            }
+            else
+            {
+                <td style="width: 150px">@(item.Thousand.ToString() + item.BitBite.ToString())</td>
+            }
+
+            <td>@(item.Calculate().ToString())</td>
+        </tr>
+        }
+    </table>
+}

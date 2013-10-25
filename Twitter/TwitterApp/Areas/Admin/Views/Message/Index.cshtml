@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Twitter.Models.Message>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Messages</h2>
+
+<div class="hero-unit">
+    <h2>Places</h2>
+
+    @(Html
+    .Kendo().Grid(Model)
+    .Name("books-grid")
+    .Columns(columns =>
+            {
+                columns.Bound(p => p.Title);
+                columns.Bound(p => p.Author.UserName);
+                columns.Bound(p => p.CreatedOn);
+                columns.Bound(p => p.Text);
+                //columns.Bound(p => p.Tags.Select(x => x.Name));
+                columns.Template(@<text>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                </text>);
+                columns.Template(@<text>
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </text>);
+            })
+            .Sortable(sort =>
+                    {
+                        sort.AllowUnsort(false);
+                        sort.SortMode(GridSortMode.SingleColumn);
+                    })
+            .Pageable()
+            .Filterable()
+            .DataSource(dataSource => dataSource
+                .Server()
+                .Read(read => read.Action("Index", "Message"))
+            .PageSize(3)))
+</div>
+
+
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Text)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Text)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedOn)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>*@

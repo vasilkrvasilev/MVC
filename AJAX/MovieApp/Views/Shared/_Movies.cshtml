@@ -1,0 +1,22 @@
+﻿@model IEnumerable<MovieApp.Models.MovieModel>
+
+<h1>Movies</h1>
+@if (Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+        <div>
+            <h3>@item.MovieTitle</h3>
+            <strong>Year - @item.Year, Studio - @item.Studio</strong>
+            @Html.ActionLink("Detail", "Detail", "Home", new { id = item.Id }, null)
+        </div>
+    }
+}
+else
+{
+    <div>
+        <strong>No Movies found</strong>
+    </div>
+}
+
+<br />

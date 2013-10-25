@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Twitter.Models.Message>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="hero-unit">
+    <h1>My Profile</h1>
+    <h3>Hello, @HttpContext.Current.User.Identity.Name</h3>
+    <br />
+    @using (Html.BeginForm("ByTag", "Home"))
+    {
+        @Html.Label("TagsLabel", "Select by Tag")
+        @Html.DropDownList("selectedTag", (IEnumerable<SelectListItem>)ViewBag.Tags)
+        <input type="submit" value="Search" />
+    }
+
+    @Html.Partial("_Messages", Model)
+
+    @Html.ActionLink("Back to Messages", "Index")
+    @Ajax.ActionLink("Create New Message", "Create", null,
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "create-message",
+            LoadingElementId = "loading",
+            OnSuccess = "hideButton",
+            OnFailure = "alertMessage"
+        }, new { id = "ajax-create-button" })
+
+
+    <div id="create-message" class="hero-unit">
+    </div>
+
+    <div id="loading" style="display: none">
+        <strong>Loading...</strong>
+    </div>
+</div>
+
+<script>
+    function hideButton() {
+        $("#ajax-create-button").hide();
+    }
+
+    function alertMessage() {
+        alert("error!")
+    }
+</script>

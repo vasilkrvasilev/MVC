@@ -1,0 +1,14 @@
+﻿@model IEnumerable<_03.Quest.Models.QuestionModel>
+@{
+    ViewBag.Title = "Home Page";  
+}
+
+<div class="hero-unit">
+    <h1>Questions</h1>
+    
+    @Html.Partial("_Result", Model)
+</div>
+
+@section Aside {
+    @Html.Partial("_Info")
+}

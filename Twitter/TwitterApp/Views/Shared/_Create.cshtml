@@ -1,0 +1,39 @@
+﻿@model Twitter.Models.Message
+
+@using (Html.BeginForm("CreateOk", "Home"))
+{
+    <h2>New Message</h2>
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.Label("TitleLabel", "Message Title")
+    @Html.EditorFor(model => model.Title)
+    @Html.ValidationMessageFor(model => model.Title, null, new { @class = "help-inline" })
+    @Html.Label("TextLabel", "Message Text")
+    @Html.EditorFor(model => model.Text)
+    @Html.ValidationMessageFor(model => model.Text, null, new { @class = "help-inline" })
+    @Html.Label("TagsLabel", "Message Tags separated by comma")
+    @Html.TextBox("tags")
+    <br />
+    <input type="submit" value="Save" />
+}
+
+@Ajax.ActionLink("Back", "Cancel", "Home",
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "create-message",
+            LoadingElementId = "loading",
+            OnSuccess = "showButton",
+            OnFailure = "alertMessage"
+        }, new { id = "ajax-cancel-button" })
+
+<script>
+    function showButton() {
+        $("#ajax-create-button").show();
+    }
+
+    function alertMessage() {
+        alert("error!")
+    }
+</script>

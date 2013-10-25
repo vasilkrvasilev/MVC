@@ -1,0 +1,57 @@
+﻿@model MovieApp.Models.MovieFullModel
+@{
+    ViewBag.Title = "Movie Page";
+}
+
+<div class="hero-unit">
+    <h1>@Model.MovieTitle</h1>
+    <h3>Year - @Model.Year</h3>
+    <h3>Director - @Model.Director, Studio - @Model.Studio (@Model.StudioAddress)</h3>
+    <h3>Male Role - @Model.MaleRoleName (@Model.MaleRoleAge years old)</h3>
+    <h3>Female Role - @Model.FemaleRoleName (@Model.FemaleRoleAge years old)</h3>
+    <br />
+
+    <div id="ajax-edit-delete-buttons">
+        @Ajax.ActionLink("Edit current Movie", "Edit", new { id = Model.Id },
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "edit-movie",
+            LoadingElementId = "loading",
+            OnSuccess = "hideButton",
+            OnFailure = "alertMessage"
+        }, new { id = "ajax-edit-button" })
+        <span> | </span>
+        @Ajax.ActionLink("Delete current Movie", "Delete", new { id = Model.Id },
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "delete-movie",
+            LoadingElementId = "loading",
+            OnSuccess = "hideButton",
+            OnFailure = "alertMessage"
+        }, new { id = "ajax-delete-button" })
+    </div>
+
+    <div id="edit-movie" class="hero-unit">
+    </div>
+
+    <div id="delete-movie" class="hero-unit">
+    </div>
+
+    <div id="loading" style="display: none">
+        <strong>Loading...</strong>
+    </div>
+</div>
+
+<script>
+    function hideButton() {
+        $("#ajax-edit-delete-buttons").hide();
+    }
+
+    function alertMessage() {
+        alert("error!")
+    }
+</script>

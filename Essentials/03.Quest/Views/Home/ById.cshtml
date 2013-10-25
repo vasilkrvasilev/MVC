@@ -1,0 +1,17 @@
+﻿@model _03.Quest.Models.QuestionModel
+
+@{
+    ViewBag.Title = "ById";
+}
+
+<div class="hero-unit">
+    <h2>@Model.Text</h2>
+    <br />
+    @Html.Partial("_Answers", Model.Answers)
+    <br />
+    @Html.ActionLink("Back to Questions", "Index")
+</div>
+
+@section Aside {
+    @Html.Partial("_Info")
+}

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<_02.Calculator.Models.Measure>
+@{
+    ViewBag.Title = "Home Page";
+    var types = new List<SelectListItem>() { new SelectListItem() { Text = "Bit", Selected = true }, 
+        new SelectListItem() { Text = "Byte" }, new SelectListItem() { Text = "Kilobit" }, 
+        new SelectListItem() { Text = "Kilobyte" }, new SelectListItem() { Text = "Megabit" }, 
+        new SelectListItem() { Text = "Megabyte" }, new SelectListItem() { Text = "Gigabit" }, 
+        new SelectListItem() { Text = "Gigabyte" }, new SelectListItem() { Text = "Terabit" }, 
+        new SelectListItem() { Text = "Terabyte" }, new SelectListItem() { Text = "Petabit" }, 
+        new SelectListItem() { Text = "Petabyte" }, new SelectListItem() { Text = "Exabit" }, 
+        new SelectListItem() { Text = "Exabyte" }, new SelectListItem() { Text = "Zettabit" }, 
+        new SelectListItem() { Text = "Zettabyte" }, new SelectListItem() { Text = "Yottabit" }, 
+        new SelectListItem() { Text = "Yottabyte" } };
+    var units = new List<SelectListItem>() { new SelectListItem() { Text = "1024", Selected = true }, 
+        new SelectListItem() { Text = "1000" } };
+}
+
+<div class="hero-unit">
+    <h1>Bit Calculator</h1>
+    <br />
+    @using(Html.BeginForm("Index", "Home")) {
+        <p>Quantity</p>
+        <input type="number" id="quantity" min="0" value="0" name="quantity" />
+        <p>Type</p>
+        @Html.DropDownList("type", types)
+        <p>Units</p>
+        @Html.DropDownList("unit", units)
+        <br />
+        <input type="submit" value="Calculate" />
+    }
+
+    @Html.Partial("_Result", Model)
+</div>

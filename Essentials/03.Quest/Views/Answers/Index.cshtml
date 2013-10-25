@@ -1,0 +1,28 @@
+﻿@model _03.Quest.Models.AnswerModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="hero-unit">
+    <h2>@Model.Question</h2>
+    <br />
+    <h3>@Model.Text</h3>
+    <br />
+    <div>
+        @Html.ActionLink("Vote For Yes", "VoteYes", "Answers", new { id = Model.Id }, null)
+        <strong>Yes - @Model.Votes.Where(x => x.Type == "Yes").Count().ToString()</strong>
+    </div>
+    <div>
+        @Html.ActionLink("Vote For No", "VoteNo", "Answers", new { id = Model.Id }, null)
+        <strong>No - @Model.Votes.Where(x => x.Type == "No").Count().ToString()</strong>
+    </div>
+    <br />
+    @Html.ActionLink("Back to current Question", "ById", "Home", new { id = Model.QuestionId }, null)
+    <span>|</span>
+    @Html.ActionLink("Back to Questions", "Index", "Home")
+</div>
+
+@section Aside {
+    @Html.Partial("_Info")
+}

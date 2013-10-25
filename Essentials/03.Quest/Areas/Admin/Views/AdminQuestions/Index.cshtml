@@ -1,0 +1,20 @@
+﻿@model IEnumerable<_03.Quest.Models.QuestionModel>
+@{
+    ViewBag.Title = "Admin Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="hero-unit">
+    <h3>Create Question</h3>
+    @using (Html.BeginForm("Create", "AdminQuestions"))
+    {
+        <br />
+        @Html.Label("createQuestionLabel", "Create New Question")
+        @Html.TextBox("createQuestionBox")
+        <br />
+        <input type="submit" value="Create" />
+        <br />
+    }
+
+    @Html.Partial("_Questions", Model)
+</div>

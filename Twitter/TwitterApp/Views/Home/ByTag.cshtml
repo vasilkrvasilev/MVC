@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Twitter.Models.Message>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="hero-unit">
+    <h1>Messages By Tag</h1>
+    <br />
+    @using (Html.BeginForm("ByTag", "Home"))
+    {
+        @Html.Label("TagsLabel", "Select by Tag")
+        @Html.DropDownList("selectedTag", (IEnumerable<SelectListItem>)ViewBag.Tags)
+        <input type="submit" value="Search" />
+    }
+
+    @Html.Partial("_Messages", Model)
+
+    @Html.ActionLink("Back to Messages", "Index")
+    @Html.ActionLink("My Profile", "ByUser")
+</div>

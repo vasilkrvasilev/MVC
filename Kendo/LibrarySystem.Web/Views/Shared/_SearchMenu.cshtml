@@ -1,0 +1,49 @@
+﻿@model IEnumerable<LibrarySystem.Web.Models.BookModel>
+
+@using (Html.BeginForm("Search", "Home"))
+{
+    @Html.Label("BookLabel", "Select by Title")
+    @(Html.Kendo().AutoComplete()
+        .Name("bookBox")
+        .BindTo(Model)
+        .Filter(FilterType.Contains)
+        .MinLength(3)
+        .DataTextField("Title")
+        //.DataTextField("Author")
+        .Placeholder("Enter title")
+    )
+    @Html.Label("CategoryLabel", "Select by Category")
+    @*@(Html.Kendo().DropDownList()
+              .Name("categoryBox")
+              .OptionLabel("Select category...")
+              .BindTo(new SelectList(Enum.GetValues(typeof(PlaceSystem.Entities.Category))))
+
+        )*@
+    
+    @(Html.Kendo()
+        .DropDownList()
+        .Name("categoryBox")
+        .OptionLabel("Select category")
+        .DataTextField("Name")
+        .DataValueField("Id")
+        .CascadeFrom("categories")
+        .DataSource(data =>
+        {
+            data.Read(read =>
+                {
+                    read.Action("GetCategories", "Home")
+                        .Data("cascadeCategories");
+                })
+                .ServerFiltering(true);
+        }))
+    <br />
+    <input type="submit" value="Search" />
+}
+
+<script>
+    function cascadeCategories() {
+        return {
+            categoryId: $('#categories').val()
+        }
+    }
+</script>

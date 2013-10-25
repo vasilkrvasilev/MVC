@@ -1,0 +1,45 @@
+﻿@using (Html.BeginForm("CreateOk", "Home"))
+{
+    <h2>New Movie</h2>
+    @Html.Label("TitleLabel", "Movie Title")
+    @Html.TextBox("MovieTitle")
+    @Html.Label("DirectorLabel", "Director Name")
+    @Html.TextBox("Director")
+    @Html.Label("YearLabel", "Movie Year")
+    <input type="number" id="year" min="1900" max="@(DateTime.Now.Year + 3)" value="2000" name="Year" />
+    @Html.Label("MaleRoleNameLabel", "Leading Male-Role Name")
+    @Html.TextBox("MaleRoleName")
+    @Html.Label("MaleRoleAgeLabel", "Leading Male-Role Age")
+    <input type="number" id="male-age" min="0" max="@(DateTime.Now.Year + 3)" value="0" name="MaleRoleAge" />
+    @Html.Label("FemaleRoleNameLabel", "Leading Female-Role Name")
+    @Html.TextBox("FemaleRoleName")
+    @Html.Label("FemaleRoleAgeLabel", "Leading Female-Role Age")
+    <input type="number" id="female-age" min="0" max="@(DateTime.Now.Year + 3)" value="0" name="FemaleRoleAge" />
+    @Html.Label("StudioLabel", "Studio Name")
+    @Html.TextBox("Studio")
+    @Html.Label("StudioAddressLabel", "Studio Address")
+    @Html.TextBox("StudioAddress")
+    <br />
+    <input type="submit" value="Save" />
+}
+
+@Ajax.ActionLink("Back", "Cancel", "Home",
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "create-movie",
+            LoadingElementId = "loading",
+            OnSuccess = "showButton",
+            OnFailure = "alertMessage"
+        }, new { id = "ajax-cancel-button" })
+
+<script>
+    function showButton() {
+        $("#ajax-create-button").show();
+    }
+
+    function alertMessage() {
+        alert("error!")
+    }
+</script>

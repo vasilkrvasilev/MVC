@@ -1,0 +1,73 @@
+﻿@model ExamApp.Web.Models.TicketDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h1>Ticketing System</h1>
+
+<h2>@Model.Title</h2>
+
+<h3>Category: @Model.Category</h3>
+
+<div class="row-fluid">
+    <div class="span4">
+        <div><strong>Author: </strong>@Model.Author</div>
+        <div><strong>Priority: </strong>@Model.Priority</div>
+    </div>
+
+    @if (Model.ScreenShot != null)
+    {
+        <div class="span4">
+            <img src="@Model.ScreenShot" />
+        </div>
+    }
+
+    @if (Model.Description != null)
+    {
+        <div class="span4">
+            <div><strong>Description: </strong>@Model.Description</div>
+        </div>
+    }
+</div>
+
+<div id="comments">
+    @if (Model.Comments.Count() > 0)
+    {
+        foreach (var item in Model.Comments)
+        {
+            @Html.Partial("_Comment", item)
+        }
+    }
+    else
+    {
+        <div>No Comments</div>
+    }
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    using (Ajax.BeginForm("PostComment", 
+        new AjaxOptions 
+        { 
+            HttpMethod = "Get", 
+            InsertionMode = InsertionMode.InsertAfter, 
+            UpdateTargetId = "comments", 
+            OnFailure = "commentPostFailure" 
+        }))
+    {
+        @Html.Hidden("TicketId", Model.Id)
+        @Html.TextArea("Content")
+        @Html.AntiForgeryToken()
+        <input type="submit" value="Send comment" />
+    }
+}
+
+@section scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        function commentPostFailure() {
+            alert("Error");
+        }
+    </script>
+}

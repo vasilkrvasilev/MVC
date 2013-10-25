@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Kendo.Mvc.UI.TreeViewItemModel>
+@{
+    ViewBag.Title = "Home Page";  
+}
+
+<div class="hero-unit">
+    <h2>Categories</h2>
+
+    @Html.Partial("_SearchMenu", (IEnumerable<LibrarySystem.Web.Models.BookModel>)ViewBag.Books)
+
+    @(Html.Kendo()
+        .TreeView()
+        .Name("tree-view")
+        .BindTo(Model))
+</div>
