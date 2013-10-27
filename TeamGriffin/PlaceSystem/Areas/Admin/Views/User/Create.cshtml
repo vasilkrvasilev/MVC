@@ -1,0 +1,63 @@
+﻿@model PlaceSystem.Areas.Admin.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+        <legend>UserViewModel</legend>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Id, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Id)
+                @Html.ValidationMessageFor(model => model.Id, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Role, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Role)
+                @Html.ValidationMessageFor(model => model.Role, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.CommentsNumber, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.CommentsNumber)
+                @Html.ValidationMessageFor(model => model.CommentsNumber, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.FavoriteCount, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.FavoriteCount)
+                @Html.ValidationMessageFor(model => model.FavoriteCount, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Create" class="btn" />
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

@@ -1,0 +1,15 @@
+﻿@model IEnumerable<PlaceSystem.Models.PlaceModel>
+@{
+    ViewBag.Title = "Favorite Places";
+}
+
+<div class="hero-unit">
+    <h1>My Places</h1>
+    <hr />
+    @Html.Partial("_SearchMenu", (IEnumerable<string>)ViewBag.Cities)
+    <hr />
+
+    @Html.Partial("_Places", Model)
+    <hr />
+    @Html.ActionLink("All Places", "Index")
+</div>

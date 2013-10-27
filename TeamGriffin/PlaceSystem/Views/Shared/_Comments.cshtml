@@ -1,0 +1,24 @@
+﻿@model IEnumerable<PlaceSystem.Models.CommentModel>
+
+<h4>Comments</h4>
+<hr /> 
+@if (Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+        <div>
+            <div>by @item.User</div>
+            <strong>@item.Text</strong>
+        </div>
+        <hr /> 
+    }
+
+}
+else
+{
+    <div>
+        <strong>No comments yet! Be the first with your oppinion</strong>
+    </div>
+}
+
+<br />

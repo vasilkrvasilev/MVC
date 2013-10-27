@@ -1,0 +1,26 @@
+﻿@model PlaceSystem.Entities.Place
+
+@{
+    ViewBag.Title = "Upload";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Pictures for @Model.Name</h3>
+
+
+<div>
+    @(Html.Kendo()
+        .Upload()
+        .Name("upload")
+        .Multiple(true)
+        .Async(async =>
+        {
+            async.AutoUpload(true)
+                .Save("UploadPicture", "Places", new { id = Model.Id });
+        }))
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

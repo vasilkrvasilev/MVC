@@ -1,0 +1,46 @@
+﻿@model PlaceSystem.Models.CommentModel
+
+<div id="comment-form" class="hero-unit">
+    @using (Ajax.BeginForm("CreateOk", "Home", 
+        new AjaxOptions 
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "comment-form"
+        }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Text, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Text)
+                @Html.ValidationMessageFor(
+                model => model.Text, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <input type="submit" value="Send" />
+    }
+</div>
+@Ajax.ActionLink("Back", "Cancel", "Home",
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "create-comment",
+            LoadingElementId = "loading",
+            OnSuccess = "showButton",
+            OnFailure = "alertMessage"
+        }, new { id = "ajax-cancel-button" })
+
+<script>
+    function showButton() {
+        $("#ajax-create-button").show();
+    }
+
+    function alertMessage() {
+        alert("error!")
+    }
+</script>

@@ -1,0 +1,41 @@
+﻿@model PlaceSystem.Areas.Admin.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>UserViewModel</legend>
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Role)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CommentsNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CommentsNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FavoriteCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FavoriteCount)
+        </dd>
+
+    </dl>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

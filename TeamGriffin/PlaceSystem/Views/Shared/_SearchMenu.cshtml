@@ -1,0 +1,21 @@
+﻿@model IEnumerable<string>
+
+@using (Html.BeginForm("Search", "Home"))
+{
+    @Html.Label("CityLabel", "Select by City")
+    @(Html.Kendo().AutoComplete()
+          .Name("cityBox")
+          .Filter("startswith")
+          .Placeholder("Select city...")
+          .BindTo(Model)
+    )
+    @Html.Label("CategoryLabel", "Select by Category")
+    @(Html.Kendo().DropDownList()
+              .Name("categoryBox")
+              .OptionLabel("Select category...")
+              .BindTo(new SelectList(Enum.GetValues(typeof(PlaceSystem.Entities.Category))))
+
+        )
+    <br />
+    <input type="submit" value="Search" />
+}

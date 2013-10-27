@@ -1,0 +1,75 @@
+﻿@model PlaceSystem.Models.PlaceFullModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="hero-unit">
+    <h1>@ViewBag.Title</h1>
+    <hr />
+    @Html.Partial("_SearchMenu", (IEnumerable<string>)ViewBag.Cities)
+    <hr />
+    <h2>@Model.Name's info</h2>
+    <hr />
+    <div>
+        <h5>City - @Model.City, Category - @Model.Category, Capacity - @Model.Capacity</h5>
+        <h5>Address - @Model.Address</h5>
+        @Html.Partial("_Pictures", Model.Pictures)
+        <div>
+            <strong>@Model.Description</strong>
+        </div>
+        <hr />
+        @if (Request.IsAuthenticated &&
+            Model.UserLikers.SingleOrDefault(
+            x => x.Username == HttpContext.Current.User.Identity.Name) == null)
+        {
+            @Html.ActionLink("Like", "Like", "Home", new { id = Model.Id }, null)
+        }
+
+        @if (Request.IsAuthenticated &&
+            Model.UserLikers.Any(x => x.Username == HttpContext.Current.User.Identity.Name))
+        {
+            @Html.ActionLink("Dislike", "Dislike", "Home", new { id = Model.Id }, null)
+        }
+
+        @Html.Partial("_Comments", Model.Comments)
+        <hr />
+        @if (Request.IsAuthenticated)
+        {
+            @Ajax.ActionLink("Comment", "Create", new { placeId = Model.Id },
+                new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = "create-comment",
+                    LoadingElementId = "loading",
+                    OnSuccess = "hideButton",
+                    OnFailure = "alertMessage"
+                }, new { id = "ajax-create-button" })
+
+            <div id="create-comment">
+            </div>
+
+            <div id="loading" style="display: none">
+                <strong>Loading...</strong>
+            </div>
+        }
+    </div>
+    <hr />
+    @if (Request.IsAuthenticated)
+    {
+        @Html.ActionLink("My Places", "ByUser")
+        <span> | </span>
+    }
+
+    @Html.ActionLink("All Places", "Index")
+</div>
+
+<script>
+    function hideButton() {
+        $("#ajax-create-button").hide();
+    }
+
+    function alertMessage() {
+        alert("error!")
+    }
+</script>

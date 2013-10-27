@@ -1,0 +1,17 @@
+﻿@model IEnumerable<PlaceSystem.Models.PlaceModel>
+@{
+    ViewBag.Title = "Search Page";
+}
+
+<div class="hero-unit">
+    @Html.Partial("_SearchMenu", (IEnumerable<string>)ViewBag.Cities)
+    <h1>Found Places</h1>
+
+    @Html.Partial("_Places", Model)
+
+    @if (Request.IsAuthenticated)
+    {
+        @Html.ActionLink("My Places", "ByUser")
+    }
+    @Html.ActionLink("All Places", "Index")
+</div>

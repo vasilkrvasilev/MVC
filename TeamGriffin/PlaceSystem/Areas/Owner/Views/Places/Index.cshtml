@@ -1,0 +1,110 @@
+﻿@model IEnumerable<PlaceSystem.Entities.Place>
+
+@{
+    ViewBag.Title = "Places";
+}
+
+<h2>Places</h2>
+
+<div class="hero-unit">
+    <h2>Places</h2>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    @(Html
+    .Kendo().Grid(Model)
+    .Name("books-grid")
+    .Columns(columns =>
+            {
+                columns.Bound(p => p.Owner.UserName);
+                columns.Bound(p => p.Name);
+                columns.Bound(p => p.Description);
+                columns.Bound(p => p.City);
+                columns.Bound(p => p.Capacity);
+                columns.Bound(p => p.Category);
+                columns.Template(@<text>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                </text>);
+                columns.Template(@<text>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </text>);
+                columns.Template(@<text>
+                    @Html.ActionLink("Upload", "Upload", new { id = item.Id })
+                </text>);
+            })
+                    .Sortable(sort =>
+                            {
+                                sort.AllowUnsort(false);
+                                sort.SortMode(GridSortMode.SingleColumn);
+                            })
+                    .Pageable()
+                    .Filterable()
+                    .DataSource(dataSource => dataSource
+                        .Server()
+                        .Read(read => read.Action("Index", "Books"))
+                    .PageSize(3)))
+</div>
+
+
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Owner.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Capacity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Owner.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Capacity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>*@

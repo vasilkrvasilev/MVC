@@ -1,0 +1,54 @@
+﻿@model IEnumerable<PlaceSystem.Models.PictureModel>
+
+@if (Model.Count() > 0)
+{
+    <div id="myCarousel" class="carousel slide">
+      <div class="carousel-inner">
+          @for (int count = 0; count < Model.Count(); count++)
+          {
+              if (@Model.ElementAt(count).Url.StartsWith("http"))
+              {
+                  if (count == 0)
+                  {
+                      <div class="active item">
+                          <img src="@Model.ElementAt(count).Url" style="width:250px; height:200px;" />
+                      </div>
+                  }
+                  else
+                  {
+                        <div class="item">
+                            <img src="@Model.ElementAt(count).Url" style="width:250px; height:200px;" />
+                        </div>
+                  }
+              }
+              else
+              {
+                  if (count == 0)
+                  {
+                        <div class="active item">
+                            <img src="../@Model.ElementAt(count).Url" style="width:250px; height:200px;" />
+                        </div>
+                  }
+                  else
+                  {
+                        <div class="item">
+                            <img src="../@Model.ElementAt(count).Url" style="width:250px; height:200px;" />
+                        </div>
+                  }
+              }
+          }
+      </div>
+      <!-- Carousel nav -->
+      <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div>
+}
+else
+{
+    <div>
+        <strong>No Pictures yet</strong>
+    </div>
+}
+
+<br />
+

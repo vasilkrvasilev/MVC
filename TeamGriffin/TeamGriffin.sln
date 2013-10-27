@@ -1,0 +1,78 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.20827.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceSystem.Tests", "PlaceSystem.Tests\PlaceSystem.Tests.csproj", "{D39CB65E-412A-4C49-BD57-09DFAFA64CA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceSystem.Entities", "PlaceSystem.Entities\PlaceSystem.Entities.csproj", "{81457B99-8B97-46E4-A647-26F87A080086}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceSystem.Data", "PlaceSystem.Data\PlaceSystem.Data.csproj", "{F4E70084-796A-48A6-97E3-A35FA67C5590}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceSystem", "PlaceSystem\PlaceSystem.csproj", "{65C9FCCC-2466-4A87-A73F-D149DDB2C2F0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FE2A5920-5992-4EEB-9ECB-3E61F9A69019}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceSystem.CustomAttributes", "PlaceSystem.CustomAttributes\PlaceSystem.CustomAttributes.csproj", "{1CEAC25A-E4DE-402F-9CC3-FB0CEFF8CD22}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs17
+		SccProjectUniqueName0 = PlaceSystem.Tests\\PlaceSystem.Tests.csproj
+		SccProjectName0 = PlaceSystem.Tests
+		SccAuxPath0 = https://tfs.codeplex.com/tfs/tfs17
+		SccLocalPath0 = PlaceSystem.Tests
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName1 = PlaceSystem.Entities\\PlaceSystem.Entities.csproj
+		SccProjectName1 = PlaceSystem.Entities
+		SccAuxPath1 = https://tfs.codeplex.com/tfs/tfs17
+		SccLocalPath1 = PlaceSystem.Entities
+		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName2 = PlaceSystem.Data\\PlaceSystem.Data.csproj
+		SccProjectName2 = PlaceSystem.Data
+		SccAuxPath2 = https://tfs.codeplex.com/tfs/tfs17
+		SccLocalPath2 = PlaceSystem.Data
+		SccProvider2 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName3 = PlaceSystem\\PlaceSystem.csproj
+		SccProjectName3 = PlaceSystem
+		SccAuxPath3 = https://tfs.codeplex.com/tfs/tfs17
+		SccLocalPath3 = PlaceSystem
+		SccProvider3 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D39CB65E-412A-4C49-BD57-09DFAFA64CA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D39CB65E-412A-4C49-BD57-09DFAFA64CA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D39CB65E-412A-4C49-BD57-09DFAFA64CA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D39CB65E-412A-4C49-BD57-09DFAFA64CA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81457B99-8B97-46E4-A647-26F87A080086}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81457B99-8B97-46E4-A647-26F87A080086}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81457B99-8B97-46E4-A647-26F87A080086}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81457B99-8B97-46E4-A647-26F87A080086}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4E70084-796A-48A6-97E3-A35FA67C5590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4E70084-796A-48A6-97E3-A35FA67C5590}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4E70084-796A-48A6-97E3-A35FA67C5590}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4E70084-796A-48A6-97E3-A35FA67C5590}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65C9FCCC-2466-4A87-A73F-D149DDB2C2F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65C9FCCC-2466-4A87-A73F-D149DDB2C2F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65C9FCCC-2466-4A87-A73F-D149DDB2C2F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65C9FCCC-2466-4A87-A73F-D149DDB2C2F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CEAC25A-E4DE-402F-9CC3-FB0CEFF8CD22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CEAC25A-E4DE-402F-9CC3-FB0CEFF8CD22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CEAC25A-E4DE-402F-9CC3-FB0CEFF8CD22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CEAC25A-E4DE-402F-9CC3-FB0CEFF8CD22}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

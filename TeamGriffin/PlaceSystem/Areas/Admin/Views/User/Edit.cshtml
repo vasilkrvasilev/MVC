@@ -1,0 +1,71 @@
+﻿@model PlaceSystem.Areas.Admin.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+        <legend>User <strong>@Model.Username</strong> details</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Role, new { @class = "control-label" })
+
+            <div class="controls">
+                @*@(Html.Kendo().DropDownList()
+                    .Name("roles")
+                    .HtmlAttributes(new { style = "width: 250px" })
+                    .DataTextField("ProductName")
+                    .DataValueField()
+                    .DataSource(source => {
+                    source.Read(read =>
+                    {
+                    read.Action("GetProducts", "Home");
+                    });
+                    }))*@
+                @(Html.Kendo().DropDownList().Name("Role").BindTo(new SelectList((IEnumerable<string>)ViewBag.ViewRoles)))
+                @*@(Html.Kendo().DropDownList().Name("UserRole").BindTo(new SelectList((IEnumerable<Roles>) ViewBag.ViewRoles)))*@
+                @*@(Html.Kendo().DropDownList().Name("UserRole").BindTo(new SelectList(Model.User.Roles.AsEnumerable())))*@
+                @*@Html.EditorFor(model => model.Role)
+                    @Html.ValidationMessageFor(model => model.Role, null, new { @class = "help-inline" })*@
+            </div>
+        </div>
+        
+        @*<div class="control-group">
+            @Html.LabelFor(model => model.CommentsNumber, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.CommentsNumber)
+                @Html.ValidationMessageFor(model => model.CommentsNumber, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.FavoriteCount, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.FavoriteCount)
+                @Html.ValidationMessageFor(model => model.FavoriteCount, null, new { @class = "help-inline" })
+            </div>
+        </div>*@
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Save" class="btn" />
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
